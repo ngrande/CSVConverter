@@ -7,10 +7,14 @@
       <sourceFolder url="file://$MODULE_DIR$/RapidXML/rapidxml_iterators.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/RapidXML/rapidxml_print.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/RapidXML/rapidxml_utils.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Sources/ICSVValues.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Sources/ICSVValues.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Sources/OutlookCSVValues.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Sources/OutlookCSVValues.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVField.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVField.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVMatch.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVMatch.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVReader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVReader.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVWriter.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sources/CSVWriter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
