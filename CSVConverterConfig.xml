@@ -1,0 +1,19 @@
+<!--this is a sample configuration -->
+<?xml version="1.0">
+<configuration>
+<values>
+<value id="1">
+<source>"First Name"</source>
+<destination>First Name</destination>
+</value>
+<value id="2">
+<source>"Last Name"</source>
+<destination>Last Name</destination>
+</value>
+<value id="3">
+<source>"E-mail Address"</source>
+<destination>Primary Email</destination>
+</value>
+</values>
+<order>3,1,2</order>
+</configuration>
