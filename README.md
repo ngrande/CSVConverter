@@ -5,3 +5,5 @@ This project was initialized due to the fact that my exported .csv file from my 
 The goal of this project is to read a .csv file and convert it to another .csv format. For example: the exported .csv from outlook.com uses "E-mail Address" and "E-mail 2 Address" but the thunderbird .csv file uses "Primary Email" and "Secondary Email". The converter will read the source format and match it to the destination format.
 
 <b>In a nutshell: it converts one .csv file to another .csv file but with different value names.</b>
+
+<i>This is bad written code and was only a project to do some C++ practice. You should NOT use this in production or as a reference!</i>
