@@ -1,8 +1,11 @@
 #include <iostream>
+#include "Sources/CSVMain.h"
 
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << endl;
+    CSVMain main;
+    main.start();
+
     return 0;
 }

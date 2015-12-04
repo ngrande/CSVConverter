@@ -6,14 +6,12 @@
 #define CSVCONVERTER_CSVWRITER_H
 
 #include "CSVMatch.h"
+#include "IWriter.h"
 
 // used to write / create a new .csv file and match the source to the destination names
-class CSVWriter {
-private:
-    CSVMatch *matches;
+class CSVWriter : public IWriter {
 public:
-    CSVWriter(CSVMatch* matches) : matches(matches) {};
-    void write(std::string outputFilename);
+    virtual void write(std::string path, CSVMatch* matches);
 };
 
 
