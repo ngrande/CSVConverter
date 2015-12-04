@@ -5,43 +5,46 @@
 #include "Configurator.h"
 
 int Configurator::getMatchCount() {
-    rapidxml::xml_document<> doc;
-
     int count = 0;
+    rapidxml::xml_node<> *rootNode = doc->first_node();
+    rootNode = rootNode->first_node("values");
 
-    doc.parse<0>(xmlFile->data());
-    rapidxml::xml_node<> *node = doc.first_node("value");
-
-    while (node != 0) {
-        node = node->next_sibling();
+    for (rapidxml::xml_node<> *valueNode = rootNode->first_node("value"); valueNode; valueNode= valueNode->next_sibling())
+    {
         count++;
     }
+
     return count;
 }
 
 void Configurator::getCSVMatches(CSVMatch *matches) {
-    rapidxml::xml_document<> doc;
-
-    doc.parse<0>(xmlFile->data());
-    rapidxml::xml_node<> *node = doc.first_node("value");
+    rapidxml::xml_node<> *rootNode = doc->first_node();
+    rootNode = rootNode->first_node("values");
 
     int i = 0;
-    while (node != 0) {
-        matches[i++] = CSVMatch(node->first_attribute("id")->value(), node->first_node("source")->value(),
-                                node->first_node("destination")->value());
-        node = node->next_sibling();
+    for (rapidxml::xml_node<> *valueNode = rootNode->first_node("value"); valueNode; valueNode= valueNode->next_sibling())
+    {
+        matches[i++] = CSVMatch(valueNode->first_attribute("id")->value(), valueNode->first_node("source")->value(),
+                                valueNode->first_node("destination")->value());
     }
-
 }
 
 std::string Configurator::getOrderStr() {
-    rapidxml::xml_document<> doc;
+    rapidxml::xml_node<> *node = doc->first_node()->first_node("order");
+    if (node != 0) {
+        return node->value();
+    }
+    else {
+        return nullptr;
+    }
 }
 
 Configurator::Configurator(std::string path) {
-    this->xmlFile =new rapidxml::file<>(path.c_str());
+    rapidxml::file<> xmlFile = rapidxml::file<>(path.c_str());
+    doc = new rapidxml::xml_document<>();
+    doc->parse<0>(xmlFile.data());
 }
 
 Configurator::~Configurator() {
-    delete xmlFile;
+    delete doc;
 }

@@ -12,14 +12,14 @@ int CSVReader::getFieldCount() {
     if (stream.is_open()) {
         int count = 0;
         std::string line;
-        if (getline(stream, line)) {
+        while (getline(stream, line)) {
             // count the commas
             // but only if there is a field name (word) after this comma
             ulong size = line.size();
             for (int i = 0; i < size; i++) {
                 // if the char is a comma but not at the end of the line
                 // because that would mean an empty field
-                if (line[i] == ',' && i < size) {
+                if (line[i] == ',') {
                     count++;
                 }
             }
@@ -64,6 +64,7 @@ void CSVReader::getFields(CSVField *fields) {
                     fields[fieldCount] = CSVField(headerMap[index], tempValue);
                     fieldCount++;
                     index++;
+                    tempValue = "";
                 }
             }
 

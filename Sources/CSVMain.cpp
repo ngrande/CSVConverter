@@ -7,11 +7,14 @@
 
 int CSVMain::start() {
     csvReader = new CSVReader("/home/ngrande/Downloads/OutlookContacts.csv");
+    int filedCount = csvReader->getFieldCount();
+    CSVField fields[filedCount];
+    csvReader->getFields(fields);
     delete csvReader;
     Configurator configurator("/home/ngrande/Projects/ClionProjects/CSVConverter/CSVConverterConfig.xml");
 
-    int size = configurator.getMatchCount();
-    CSVMatch matches[size];
+    int matchCount = configurator.getMatchCount();
+    CSVMatch matches[matchCount];
     configurator.getCSVMatches(matches);
 
     writerInstance = new CSVWriter();

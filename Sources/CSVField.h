@@ -12,6 +12,7 @@ private:
     std::string name;
     std::string value;
 public:
+    CSVField() {};
     CSVField(std::string name, std::string value) : name(name), value(value) {};
 
     const std::string &getName() const {

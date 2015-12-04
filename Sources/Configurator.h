@@ -11,7 +11,7 @@
 
 class Configurator {
 private:
-    rapidxml::file<> *xmlFile;
+    rapidxml::xml_document<> *doc;
 public:
     Configurator(std::string path);
     int getMatchCount();
