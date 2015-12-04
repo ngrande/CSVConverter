@@ -13,8 +13,10 @@ private:
     std::string source;
     std::string destination;
 public:
-    CSVXmlMatch() {};
-    CSVXmlMatch(std::string id, std::string source, std::string destination) : id(id), source(source), destination(destination) {};
+    CSVXmlMatch() { };
+
+    CSVXmlMatch(std::string id, std::string source, std::string destination) : id(id), source(source),
+                                                                               destination(destination) { };
 
     const std::string &getId() const {
         return id;

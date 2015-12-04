@@ -14,7 +14,7 @@ private:
     CSVReader *csvReader;
     IWriter *writerInstance;
 public:
-    int start();
+    int start(std::string sourcePath, std::string xmlConfigPath, std::string outPath);
 };
 
 

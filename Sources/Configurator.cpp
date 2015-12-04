@@ -17,15 +17,15 @@ int Configurator::getMatchCount() {
     return count;
 }
 
-void Configurator::getCSVMatches(CSVMatch *matches) {
+void Configurator::getCSVMatches(std::vector<CSVXmlMatch> *matches) {
     rapidxml::xml_node<> *rootNode = doc->first_node();
     rootNode = rootNode->first_node("values");
 
     int i = 0;
     for (rapidxml::xml_node<> *valueNode = rootNode->first_node("value"); valueNode; valueNode= valueNode->next_sibling())
     {
-        matches[i++] = CSVMatch(valueNode->first_attribute("id")->value(), valueNode->first_node("source")->value(),
-                                valueNode->first_node("destination")->value());
+        matches->push_back(CSVXmlMatch(valueNode->first_attribute("id")->value(), valueNode->first_node("source")->value(),
+                                   valueNode->first_node("destination")->value()));
     }
 }
 

@@ -11,9 +11,10 @@ class CSVField {
 private:
     std::string name;
     std::string value;
+    int headerInd;
 public:
     CSVField() {};
-    CSVField(std::string name, std::string value) : name(name), value(value) {};
+    CSVField(int headerInd, std::string name, std::string value) : headerInd(headerInd), name(name), value(value) {};
 
     const std::string &getName() const {
         return name;
@@ -21,6 +22,10 @@ public:
 
     const std::string &getValue() const {
         return value;
+    }
+
+    int getHeaderInd() const {
+        return headerInd;
     }
 };
 

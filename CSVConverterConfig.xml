@@ -2,17 +2,21 @@
 <configuration>
 	<values>
 		<value id="1">
-			<source>\"First Name\"</source>
+			<source>"First Name"</source>
 			<destination>First Name</destination>
 		</value>
 		<value id="2">
-			<source>\"Last Name\"</source>
+			<source>"Last Name"</source>
 			<destination>Last Name</destination>
 		</value>
 		<value id="3">
-			<source>\"E-mail Address\"</source>
+			<source>"E-mail Address"</source>
 			<destination>Primary Email</destination>
 		</value>
+		<value id="4">
+			<source>"E-mail 2 Address"</source>
+			<destination>Secondary Email</destination>
+		</value>
 	</values>
-	<order>3,1,2</order>
+	<order>1,2,3,4</order>
 </configuration>

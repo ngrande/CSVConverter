@@ -5,20 +5,20 @@
 #include "CSVMain.h"
 #include "Configurator.h"
 
-int CSVMain::start() {
-    csvReader = new CSVReader("/home/ngrande/Downloads/OutlookContacts.csv");
-    int filedCount = csvReader->getFieldCount();
-    CSVField fields[filedCount];
-    csvReader->getFields(fields);
+int CSVMain::start(std::string sourcePath, std::string xmlConfigPath, std::string outPath) {
+    csvReader = new CSVReader(sourcePath);
+    int filedCount = csvReader->getHeaderCount();
+    std::vector<std::vector<CSVField>> fields[filedCount];
+    std::map<int, std::string> headerMap = csvReader->getFields(fields);
     delete csvReader;
-    Configurator configurator("/home/ngrande/Projects/ClionProjects/CSVConverter/CSVConverterConfig.xml");
+    Configurator configurator(xmlConfigPath);
 
     int matchCount = configurator.getMatchCount();
-    CSVMatch matches[matchCount];
+    std::vector<CSVXmlMatch> matches[matchCount];
     configurator.getCSVMatches(matches);
 
     writerInstance = new CSVWriter();
-    writerInstance->write("Output.csv", matches);
+    writerInstance->write(outPath, matches, &headerMap, fields, configurator.getOrderStr());
     delete writerInstance;
 
     return 0;

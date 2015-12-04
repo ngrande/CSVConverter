@@ -8,6 +8,8 @@
 #include <fstream>
 #include <string>
 #include "CSVField.h"
+#include <map>
+#include <vector>
 
 class CSVReader {
 private:
@@ -15,8 +17,8 @@ private:
     const char SEPARATOR = ',';
 public:
     CSVReader(std::string path) : path(path) {};
-    int getFieldCount();
-    void getFields(CSVField* fields);
+    int getHeaderCount();
+    std::map<int, std::string> getFields(std::vector<std::vector<CSVField>> *fields);
 };
 
 

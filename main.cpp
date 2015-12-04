@@ -3,9 +3,15 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
     CSVMain main;
-    main.start();
 
-    return 0;
+    if (argc == 4) {
+        main.start(argv[1], argv[2], argv[3]);
+        return 0;
+    }
+    else
+    {
+        throw "Not enough arguments!";
+    }
 }

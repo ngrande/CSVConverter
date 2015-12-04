@@ -6,11 +6,15 @@
 #define CSVCONVERTER_IWRITER_H
 
 #include <string>
-#include "CSVMatch.h"
+#include <map>
+#include "CSVXmlMatch.h"
+#include "CSVField.h"
+#include <vector>
 
 class IWriter {
 public:
-    virtual void write(std::string path, CSVMatch *matches) = 0;
+    virtual void write(std::string path, std::vector<CSVXmlMatch> *matches, std::map<int, std::string> *headerMap,
+                       std::vector<std::vector<CSVField>> *fields, std::string valueOrder) = 0;
 };
 
 

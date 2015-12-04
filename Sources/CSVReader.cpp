@@ -2,17 +2,16 @@
 // Created by ngrande on 12/3/15.
 //
 
-#include <map>
 #include "CSVReader.h"
 
-int CSVReader::getFieldCount() {
+int CSVReader::getHeaderCount() {
     std::ifstream stream;
     stream.open(path);
 
     if (stream.is_open()) {
         int count = 0;
         std::string line;
-        while (getline(stream, line)) {
+        if (getline(stream, line)) {
             // count the commas
             // but only if there is a field name (word) after this comma
             ulong size = line.size();
@@ -33,38 +32,51 @@ int CSVReader::getFieldCount() {
     }
 }
 
-void CSVReader::getFields(CSVField *fields) {
+std::map<int, std::string> CSVReader::getFields(std::vector<std::vector<CSVField>> *fields) {
     std::ifstream stream;
     stream.open(path);
+    std::map<int, std::string> headerMap;
+
+    int commas = getHeaderCount();
+    int commaCount = 0;
 
     if (stream.is_open()) {
         bool isFirstLine = true;
         std::string line;
-        std::map<int, std::string> headerMap;
-        int fieldCount = 0;
+
+        int index = 0;
+        std::string tempValue = "";
+        std::vector<CSVField> lineVector;
+        bool quoted = false;
 
         while (getline(stream, line)) {
-            int index = 0;
-            std::string tempValue = "";
 
             // Read header field
             for (int i = 0; i < line.size(); i++) {
                 char lineChar = line[i];
 
-                // if current char != ','
-                if (lineChar != SEPARATOR) {
+                if (lineChar == '"') {
+                    quoted = !quoted;
+                }
+                if (lineChar != SEPARATOR | quoted) {
                     tempValue += lineChar;
                 }
-                else if (isFirstLine) {
-                    headerMap[index] = tempValue;
-                    index++;
-                    tempValue = "";
-                }
                 else {
-                    fields[fieldCount] = CSVField(headerMap[index], tempValue);
-                    fieldCount++;
+                    if (isFirstLine) {
+                        headerMap[index] = tempValue;
+                    }
+
+                    lineVector.push_back(CSVField(index, headerMap[index], tempValue));
                     index++;
                     tempValue = "";
+
+                    commaCount++;
+                    if (commaCount == commas) {
+                        fields->push_back(lineVector);
+                        commaCount = 0;
+                        index = 0;
+                        lineVector = std::vector<CSVField>();
+                    }
                 }
             }
 
@@ -73,4 +85,5 @@ void CSVReader::getFields(CSVField *fields) {
         }
     }
 
+    return headerMap;
 }

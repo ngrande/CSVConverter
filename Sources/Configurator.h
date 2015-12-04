@@ -6,8 +6,9 @@
 #define CSVCONVERTER_CONFIGURATOR_H
 
 #include <string>
-#include "CSVMatch.h"
+#include "CSVXmlMatch.h"
 #include "../RapidXML/rapidxml_utils.hpp"
+#include <vector>
 
 class Configurator {
 private:
@@ -15,7 +16,7 @@ private:
 public:
     Configurator(std::string path);
     int getMatchCount();
-    void getCSVMatches(CSVMatch* matches);
+    void getCSVMatches(std::vector<CSVXmlMatch> *matches);
     std::string getOrderStr();
     ~Configurator();
 };
